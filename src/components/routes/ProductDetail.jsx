@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { setProducts } from '../../store/slices/products.slice'
 
