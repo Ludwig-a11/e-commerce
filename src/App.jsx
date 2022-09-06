@@ -4,7 +4,9 @@ import Home from './components/routes/Home'
 import Login from './components/routes/Login'
 import ProductDetail from './components/routes/ProductDetail'
 import Purchases from './components/routes/Purchases'
+import SignUp from './components/routes/SignUp'
 import Header from './components/shared/Header'
+import ProtectedRoutes from './ProtectedRoutes'
 
 function App() {
   const [cartToggle, setCartToggle] = useState(false)
@@ -18,10 +20,13 @@ function App() {
       <Header handleCartToggle={handleCartToggle} cartToggle={cartToggle} />
 
       <Routes>
-        <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
-        <Route path="/purchases" element={<Purchases />}></Route>
-        <Route path="/product/:id" element={<ProductDetail />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/purchases" element={<Purchases />}></Route>
+          <Route path="/product/:id" element={<ProductDetail />}></Route>
+        </Route>
       </Routes>
     </div>
   )
