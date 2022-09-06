@@ -17,11 +17,13 @@ const Home = () => {
   const products = useSelector((state) => state.products)
 
   return (
-    <div className="font-bold">
-      <div className="home__container-card"></div>
-      {products?.map((product) => (
-        <CardHome key={product.id} product={product} />
-      ))}
+    <div className="my-24">
+      <div className="">
+        {products?.map((product) => (
+          <CardHome key={product.id} product={product} />
+        ))}
+      </div>
+      
     </div>
   )
 }
