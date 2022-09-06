@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Home from './components/routes/Home'
 import Login from './components/routes/Login'
@@ -6,9 +7,16 @@ import Purchases from './components/routes/Purchases'
 import Header from './components/shared/Header'
 
 function App() {
+  const [cartToggle, setCartToggle] = useState(false)
+
+  const handleCartToggle = () => setCartToggle(!cartToggle)
+
+  console.log(cartToggle)
+
   return (
-    <div className="app">
-      <Header />
+    <div className="app bg-slate-100">
+      <Header handleCartToggle={handleCartToggle} cartToggle={cartToggle} />
+
       <Routes>
         <Route path="/" element={<Home />}></Route>
         <Route path="/login" element={<Login />}></Route>
