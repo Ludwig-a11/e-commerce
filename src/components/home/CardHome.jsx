@@ -11,11 +11,11 @@ const CardHome = ({product}) => {
 
 
   return (
-    <article className='card__home' onClick={handleClick}>
-      <header className='card-home__header'>
-        <img className='car-home__img' src={product.productImgs[0]} alt='' />
+    <article className='shadow-lg hover:scale-105 duration-100 w-60 h-96 bg-white flex flex-col p-4 rounded-xl gap-6' onClick={handleClick}>
+      <header className='h-2/5 flex justify-center items-center'>
+        <img className='h-full' src={product.productImgs[0]} alt='' />
       </header>
-      <div className='card-home__body'>
+      <div className='h-3/5'>
         <h3 className='card-home__name'>{product.title}</h3>
         <section className='card-home__price'>
           <h4 className='card-home__price-label'>Price</h4>

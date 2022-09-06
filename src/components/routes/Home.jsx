@@ -17,8 +17,8 @@ const Home = () => {
   const products = useSelector((state) => state.products)
 
   return (
-    <div className="my-24">
-      <div className="">
+    <div className=" bg-green-400">
+      <div className="p-24 bg-slate-100 flex flex-wrap gap-8 justify-center">
         {products?.map((product) => (
           <CardHome key={product.id} product={product} />
         ))}

@@ -14,7 +14,7 @@ function App() {
   console.log(cartToggle)
 
   return (
-    <div className="app">
+    <div className="app bg-slate-100">
       <Header handleCartToggle={handleCartToggle} cartToggle={cartToggle} />
 
       <Routes>
