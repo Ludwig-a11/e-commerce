@@ -20,9 +20,11 @@ const CardHome = ({ product }) => {
           <h4 className="card-home__price-label">Price</h4>
           <span className="card-home__price-value">{product.price}</span>
         </section>
-        <button onClick={() => console.log('add to cart')} className="absolute inline-flex items-center justify-center p-0.5 right-3 bottom-3 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-600 to-yellow-300 group-hover:from-red-400 group-hover:to-red-600 hover:text-white  focus:ring-4 focus:outline-none focus:ring-green-200 ">
+        <button
+          onClick={() => console.log('add to cart')}
+          className="absolute inline-flex items-center justify-center p-0.5 right-3 bottom-3 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-red-600 to-yellow-300 group-hover:from-red-400 group-hover:to-red-600 hover:text-white  focus:ring-4 focus:outline-none focus:ring-green-200 ">
           <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-gray-900  rounded-md group-hover:bg-opacity-0">
-            <img className='w-4' src="./images/add-cart.png" alt="icoon add" />
+            <img className="w-4" src="./images/add-cart.png" alt="icoon add" />
           </span>
         </button>
       </div>
