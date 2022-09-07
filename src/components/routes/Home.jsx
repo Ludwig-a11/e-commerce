@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../store/slices/products.slice'
 import CardHome from '../home/CardHome'
 
-const Home = () => {
+const Home = ({getItemsCart}) => {
   const dispatch = useDispatch()
 
   /* ayuda a manejar el estado  */
@@ -20,7 +20,7 @@ const Home = () => {
     
       <div className="p-24 min-h-screen bg-slate-100 flex flex-wrap gap-8 justify-center">
         {products?.map((product) => (
-          <CardHome key={product.id} product={product} />
+          <CardHome key={product.id} product={product} getItemsCart={getItemsCart} />
         ))}
       </div>
   )

@@ -42,11 +42,11 @@ const ProductDetail = () => {
                   </Link>
                 </li>
                 <li>
-                  <a
+                  <span
                     className="text-sm font-medium text-indigo-500 hover:text-indigo-600"
                     href="#">
                     {productInfo?.title}
-                  </a>
+                  </span>
                 </li>
               </ul>
             </div>

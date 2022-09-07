@@ -1,9 +1,35 @@
 
+import axios from "axios"
+import { useEffect } from "react"
 import { NavLink } from "react-router-dom"
+import getConfig from "../../utils/getConfig"
+import ProductsInCart from "../cart/ProductsInCart"
 
 
-const Header = ({handleCartToggle, cartToggle}) => {
+const Header = ({handleCartToggle, cartToggle, getItemsCart, cartProducts}) => {
   const token = localStorage.getItem("Token")
+
+  useEffect(() => {
+    if (cartToggle) {
+      getItemsCart()
+    }
+      console.log('dentro del if')
+    
+  }, [cartToggle])
+
+  const handleCheckout = () => {
+    const URL = "https://ecommerce-api-react.herokuapp.com/api/v1/purchases"
+    const obj = {
+      street: "Green St. 1456",
+      colony: "Southwest",
+      zipCode: 12345,
+      city: "USA",
+      references: "Some references"
+  }
+    axios.post(URL, obj, getConfig())
+    .then((res) => getItemsCart())
+    .catch((err) => console.log(err))
+  }
 
   return (
     <header className="flex z-50 shadow-md w-full h-20 px-5 items-center bg-slate-100 justify-between fixed top-0 ">
@@ -14,12 +40,12 @@ const Header = ({handleCartToggle, cartToggle}) => {
       <nav className="flex w-1/4 h-full  ">
         <ul className="flex w-full h-full gap-2">
           <li className="h-full  w-24 flex items-center justify-center ">
-            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/login">
+            <NavLink className={({isActive}) => isActive ? 'w-full h-full flex justify-center items-center border-b-2 border-solid border-black' : ''} to="/login">
               <img className="w-8" src="./images/user.png" alt="icon" />
             </NavLink>
           </li>
           <li className="h-full  w-24 flex items-center justify-center">
-            <NavLink className={({isActive}) => isActive ? 'active-link' : ''} to="/purchases">
+            <NavLink className={({isActive}) => isActive ? 'w-full h-full flex justify-center items-center border-b-2 border-solid border-black' : ''} to="/purchases">
             <img className="w-8" src="./images/bag.png" alt="icon" />
             </NavLink>
           </li>
@@ -29,13 +55,17 @@ const Header = ({handleCartToggle, cartToggle}) => {
         </ul>
       </nav>
       {(token && cartToggle) ? 
-        <section className=' bg-slate-100/[.6] fixed backdrop-blur  right-0 w-1/4 top-0 h-full flex-col py-10'>
+        <section onClick={(e) => {e.stopPropagation()
+          
+        }} className=' bg-slate-100/[.6] fixed backdrop-blur  right-0 w-1/3 top-0 h-full flex flex-col items-center py-10'>
           <button className='absolute top-2 right-2 w-8 h-8 bg-cover  bg-[url("./images/close.png")] rounded-full' onClick={handleCartToggle}></button>
-          <div className='w-full flex justify-center'>
+          <div className='w-full flex flex-col items-center justify-center'>
             <h2 className='font-bold'>Cart</h2>
+            <ProductsInCart getItemsCart={getItemsCart} cartProducts={cartProducts} />
           </div>
+          <button onClick={handleCheckout} className="absolute bottom-2 px-10 py-2 bg-red-400 ">checkout</button>
         </section>
-      : console.log(cartToggle)}
+      : null}
     </header>
   )
 }

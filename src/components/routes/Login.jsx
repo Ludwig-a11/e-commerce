@@ -1,8 +1,12 @@
 import axios from 'axios'
 import LoginCard from '../Login/LoginCard'
 import { useNavigate } from 'react-router-dom'
+import Logout from '../Login/Logout'
 const Login = () => {
   const navigate = useNavigate()
+
+  const token = localStorage.getItem('Token')
+
   const handleLogin = (data) => {
     axios
       .post(
@@ -15,11 +19,11 @@ const Login = () => {
       })
       .catch((err) => console.log(err))
   }
-  return (
-    <div>
-      <LoginCard handleLogin={handleLogin} />
-    </div>
-  )
+  if (token) {
+    return (<Logout />)
+  }else{
+    return (<LoginCard handleLogin={handleLogin} />)
+  }
 }
 
 export default Login
