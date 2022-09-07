@@ -1,10 +1,7 @@
 import axios from 'axios'
 import LoginCard from '../Login/LoginCard'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { setLogin } from '../../store/slices/login.slice'
 const Login = () => {
-  const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleLogin = (data) => {
     axios
@@ -13,7 +10,7 @@ const Login = () => {
         data
       )
       .then((res) => {
-        dispatch(setLogin(res.data.data.token))
+        localStorage.setItem('Token', res.data.data.token)
         navigate('/')
       })
       .catch((err) => console.log(err))
