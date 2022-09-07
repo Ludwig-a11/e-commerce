@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const ProductDetail = () => {
   const [productInfo, setProductInfo] = useState()
@@ -24,9 +24,9 @@ const ProductDetail = () => {
             <div className="w-full px-4">
               <ul className="flex flex-wrap items-center mb-16">
                 <li className="mr-6">
-                  <a
+                  <Link
                     className="flex items-center text-sm font-medium text-gray-400 hover:text-gray-500"
-                    href="/">
+                    to="/">
                     <span>Home</span>
                     <svg
                       className="ml-6"
@@ -39,7 +39,7 @@ const ProductDetail = () => {
                         d="M0.150291 0.898704C-0.0500975 0.692525 -0.0500975 0.359292 0.150291 0.154634C0.35068 -0.0507836 0.674443 -0.0523053 0.874831 0.154634L3.7386 3.12787C3.93899 3.33329 3.93899 3.66576 3.7386 3.8727L0.874832 6.84594C0.675191 7.05135 0.35068 7.05135 0.150292 6.84594C-0.0500972 6.63976 -0.0500972 6.30652 0.150292 6.10187L2.49888 3.49914L0.150291 0.898704Z"
                         fill="currentColor"></path>
                     </svg>
-                  </a>
+                  </Link>
                 </li>
                 <li>
                   <a

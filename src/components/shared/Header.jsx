@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom"
 
 
 const Header = ({handleCartToggle, cartToggle}) => {
+  const token = localStorage.getItem("Token")
+
   return (
     <header className="flex z-50 shadow-md w-full h-20 px-5 items-center bg-slate-100 justify-between fixed top-0 ">
       <NavLink className='flex items-center' to="/">
@@ -26,14 +28,14 @@ const Header = ({handleCartToggle, cartToggle}) => {
           </li>
         </ul>
       </nav>
-      {cartToggle && (
+      {(token && cartToggle) ? 
         <section className=' bg-slate-100/[.6] fixed backdrop-blur  right-0 w-1/4 top-0 h-full flex-col py-10'>
           <button className='absolute top-2 right-2 w-8 h-8 bg-cover  bg-[url("./images/close.png")] rounded-full' onClick={handleCartToggle}></button>
           <div className='w-full flex justify-center'>
             <h2 className='font-bold'>Cart</h2>
           </div>
         </section>
-      )}
+      : console.log(cartToggle)}
     </header>
   )
 }
