@@ -42,13 +42,16 @@ const Header = ({
 
   return (
     <header className="fixed flex z-50 shadow-md w-full h-20 px-5 items-center bg-slate-100 justify-between  top-0 ">
+
       <NavLink className="flex items-center" to="/">
+
         <img className="w-10" src="./images/logo.png" alt="" />
         <h1 className="font-bold text-xl">E-commerce</h1>
       </NavLink>
       <nav className="flex  h-full  ">
         <ul className="flex w-full h-full gap-4 md:gap-8 lg:gap-10">
           <li className="h-full   flex items-center justify-center ">
+
             <NavLink
               className={({ isActive }) =>
                 isActive
@@ -56,10 +59,12 @@ const Header = ({
                   : ''
               }
               to="/login">
+
               <img className="w-8" src="./images/user.png" alt="icon" />
             </NavLink>
           </li>
           <li className="h-full   flex items-center justify-center">
+
             <NavLink
               className={({ isActive }) =>
                 isActive
@@ -104,6 +109,7 @@ const Header = ({
               checkout
             </button>
           </div>
+
         </section>
       ) : null}
     </header>
