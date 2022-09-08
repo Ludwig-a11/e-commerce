@@ -32,7 +32,7 @@ const Logout = () => {
             <span
               className="text-sm font-medium text-indigo-500 hover:text-indigo-600"
               href="#">
-              My Purchases
+              User
             </span>
           </li>
         </ul>
