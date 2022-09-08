@@ -4,15 +4,28 @@ import axios from 'axios'
 
 import { useEffect, useState } from 'react'
 
-
-import { Link, useParams} from 'react-router-dom'
-
-
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import getConfig from '../../utils/getConfig'
 
 const ProductDetail = () => {
   const [productInfo, setProductInfo] = useState()
+  const [counter, setCounter] = useState(1)
+
+  const handlePlus = () => {
+    if (counter + 1 <= 10) {
+      setCounter(counter + 1)
+    }
+  }
+  const handleMinus = () => {
+    if (counter - 1 >= 1) {
+      setCounter(counter - 1)
+    }
+  }
+  const navigate = useNavigate()
 
   const { id } = useParams()
+
+  const token = localStorage.getItem('Token')
 
   useEffect(() => {
     const URL = `https://ecommerce-api-react.herokuapp.com/api/v1/products/${id}`
@@ -21,7 +34,20 @@ const ProductDetail = () => {
       .then((res) => setProductInfo(res.data.data.product))
       .catch((err) => console.log(err))
   }, [])
-  console.log(productInfo)
+
+  const handleAddToCart = () => {
+    if (token) {
+      const URL = `https://ecommerce-api-react.herokuapp.com/api/v1/cart`
+      axios
+        .post(URL, { id: productInfo.id, quantity: counter }, getConfig())
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+    }else{
+      navigate('/login')
+    }
+    }
+    
+  
 
   return (
     <div className="mt-10">
@@ -81,21 +107,27 @@ const ProductDetail = () => {
                   {productInfo?.description}
                 </p>
               </div>
-              <div className="mb-10">
-                <h4 className="mb-3 font-heading font-medium">Qty:</h4>
-                <input
-                  className="w-24 px-3 py-2 text-center bg-white border-2 border-blue-500 outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 rounded-xl"
-                  type="text"
-                  placeholder="1"
-                />
+              <div className="mb-10 flex items-center gap-4">
+                <h4 className=" font-heading font-medium">Qty:</h4>
+                <div className='flex gap-1'>
+                  <button className="bg-red-400 px-3 hover:bg-red-500 active:scale-95" onClick={handleMinus}>
+                    -
+                  </button>
+                  <span className="inline-block w-10 text-center bg-white border-2 border-red-500 outline-none focus:ring-2 focus:ring-opacity-50 ">
+                    {counter}
+                  </span>
+                  <button className="bg-red-400 px-3 hover:bg-red-500 active:scale-95" onClick={handlePlus}>
+                    +
+                  </button>
+                </div>
               </div>
               <div className="flex flex-wrap -mx-2 mb-12">
-                <div className="w-full md:w-2/3 px-2 mb-2 md:mb-0">
-                  <a
-                    className="block py-4 px-2 leading-8 font-heading font-medium tracking-tighter text-xl text-white text-center bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 hover:bg-blue-600 rounded-xl"
-                    href="#">
+                <div className="w-full max-w-[480px] md:w-2/3 px-2 mb-2 md:mb-0">
+                  <button
+                    className="w-full block py-4 px-2 leading-8 font-heading font-medium tracking-tighter text-xl text-white text-center bg-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 hover:bg-blue-600 rounded-xl"
+                    onClick={handleAddToCart}>
                     Add to Cart
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
