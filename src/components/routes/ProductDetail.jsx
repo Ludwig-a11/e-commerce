@@ -3,7 +3,10 @@ import axios from 'axios'
 // import { setProducts } from '../../store/slices/products.slice'
 
 import { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+
+
+import { Link, useParams} from 'react-router-dom'
+
 
 
 const ProductDetail = () => {
