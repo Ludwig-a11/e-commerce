@@ -13,6 +13,7 @@ import getConfig from './utils/getConfig'
 function App() {
   const [cartToggle, setCartToggle] = useState(false)
   const [cartProducts, setCartProducts] = useState([])
+  const [totalPrice, setTotalPrice] = useState(0)
 
   console.log(cartProducts)
 
@@ -24,14 +25,21 @@ function App() {
     const URL = 'https://ecommerce-api-react.herokuapp.com/api/v1/cart'
     axios
       .get(URL, getConfig())
-      .then(res => setCartProducts(res.data.data.cart.products))
+      .then(res => {
+        const products = res.data.data.cart.products
+        setCartProducts(products)
+        const total = products.reduce((acc, cv) =>{
+          return Number(cv.price) * cv.productsInCart.quantity + acc
+        }, 0)
+        setTotalPrice(total)
+      })
       .catch(() => setCartProducts() )
   }
 
 
   return (
     <div onClick={() => setCartToggle(false)} className="app bg-slate-100">
-      <Header cartProducts={cartProducts} getItemsCart={getItemsCart} handleCartToggle={handleCartToggle} setCartToggle={setCartToggle} cartToggle={cartToggle} />
+      <Header totalPrice={totalPrice} setTotalPrice={setTotalPrice} cartProducts={cartProducts} getItemsCart={getItemsCart} handleCartToggle={handleCartToggle} setCartToggle={setCartToggle} cartToggle={cartToggle} />
 
       <Routes>
         <Route path="/login" element={<Login />}></Route>
