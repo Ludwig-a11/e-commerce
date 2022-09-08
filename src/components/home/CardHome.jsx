@@ -26,16 +26,16 @@ const CardHome = ({ product, getItemsCart }) => {
  
   return (
     <article
-      className="relative shadow-lg hover:scale-105 duration-100 w-60 h-96 bg-white flex flex-col p-4 rounded-xl gap-6"
+      className="relative max-w-sm shadow-lg lg:h-96 hover:scale-105 duration-100 w-full lg:w-60 h-40  bg-white flex lg:flex-col p-4 rounded-xl gap-4"
       onClick={handleClick}>
-      <header className="h-2/5 flex justify-center items-center">
-        <img className="h-full" src={product.productImgs[0]} alt="" />
+      <header className="w-2/5 h-full lg:h-2/5 lg:w-full flex lg:justify-center justify-center items-center">
+        <img className="lg:h-full  max-h-32" src={product.productImgs[0]} alt="" />
       </header>
-      <div className="h-3/5">
-        <h3 className="card-home__name">{product.title}</h3>
+      <div className="w-3/5 flex flex-col justify-start items-start lg:h-3/5">
+        <h3 className="card-home__name font-['Poppins']">{product.title}</h3>
         <section className="card-home__price">
-          <h4 className="card-home__price-label">Price</h4>
-          <span className="card-home__price-value">{product.price}</span>
+          
+          <span className="card-home__price-value">${product.price}</span>
         </section>
         <button
           onClick={handleAddToCart}

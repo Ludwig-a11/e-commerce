@@ -21,7 +21,7 @@ const ProductsInCart = ({cartProducts, getItemsCart}) => {
                 <p>{product.price}</p>
                 <p>{product.productsInCart.quantity}</p>
                 <button className="absolute right-2 bottom-2" onClick={() => handleDeleteProduct(product.id)}>
-                    <img className="w-8" src="./images/trash.png" alt="" />
+                    <img className="w-8 hover:scale-105" src="./images/trash.png" alt="" />
                 </button>
             </div>
         ))

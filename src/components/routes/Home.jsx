@@ -18,7 +18,7 @@ const Home = ({getItemsCart}) => {
 
   return (
     
-      <div className="p-24 min-h-screen bg-slate-100 flex flex-wrap gap-8 justify-center">
+      <div className="p-4 py-24 min-h-screen w-full bg-slate-100 flex flex-wrap gap-8 justify-center">
         {products?.map((product) => (
           <CardHome key={product.id} product={product} getItemsCart={getItemsCart} />
         ))}
