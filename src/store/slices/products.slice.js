@@ -20,3 +20,9 @@ export const getAllProducts = () => (dispatch) => {
     .then((res) => dispatch(setProducts(res.data.data.products)))
     .catch((err) => console.log(err))
 }
+
+export const getProductByCategory = (id) => (dispatch) => {
+    return axios.get(`https://ecommerce-api-react.herokuapp.com/api/v1/products?category=${id}`)
+        .then((res) => dispatch(setProducts(res.data.data.products)))
+        .catch((err) => console.log(err));
+}

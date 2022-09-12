@@ -2,16 +2,23 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import getConfig from '../../utils/getConfig'
 
-const CardHome = ({ product, getItemsCart }) => {
+const CardHome = ({ product, getItemsCart, getProductInfo }) => {
   const navigate = useNavigate()
 
   const handleClick = () => {
     navigate(`/product/${product.id}`)
-  }
+    getProductInfo(product.id)
+    
 
+  }
+  const token = localStorage.getItem('Token')
   // funcion para agregar al carrito
   const handleAddToCart = (e) => {
     e.stopPropagation()
+    if (!token) {
+      navigate('/login')
+    } else {
+
     const URL = 'https://ecommerce-api-react.herokuapp.com/api/v1/cart'
     const obj = {
       id: product.id,
@@ -22,6 +29,7 @@ const CardHome = ({ product, getItemsCart }) => {
       getItemsCart()
       console.log(res.data)})
     .catch(err => console.log(err))
+  }
   }
  
   return (

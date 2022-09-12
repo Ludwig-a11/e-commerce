@@ -10,7 +10,8 @@ const Header = ({
   getItemsCart,
   cartProducts,
   totalPrice,
-  setTotalPrice
+  setTotalPrice,
+  getProductInfo
 }) => {
   const token = localStorage.getItem('Token')
 
@@ -94,6 +95,7 @@ const Header = ({
           <div className="w-full h-4/5 flex flex-col items-center justify-start">
             <h2 className="font-bold">{cartProducts?.length > 0 ? 'Cart' : 'Add products to cart'}</h2>
             <ProductsInCart
+              getProductInfo={getProductInfo}
               getItemsCart={getItemsCart}
               cartProducts={cartProducts}
             />
